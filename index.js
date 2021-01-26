@@ -1,5 +1,5 @@
-const title = document.querySelector(".title");
-const select = document.querySelector(".select");
+const title = document.querySelector("#title");
+const select = document.querySelector("#select");
 
 title.textContent = data.name;
 
@@ -13,12 +13,11 @@ for (const property in impact) {
   select.appendChild(option);
 }
 
-
 let labels = null;
 let values = null;
 
 var reDraw = function (lbs, vls) {
-  const ctx = document.querySelector(".myCanvas").getContext("2d");
+  const ctx = document.querySelector("#myCanvas").getContext("2d");
   const myChart = new Chart(ctx, {
     type: "bar",
     data: {
@@ -51,9 +50,14 @@ var reDraw = function (lbs, vls) {
         ],
         xAxes: [
           {
-            display: false,
             ticks: {
+              fontSize: 20,
+              fontColor: "white",
+              display: true,
               beginAtZero: true,
+            },
+            gridLines: {
+              display: false,
             },
           },
         ],
@@ -82,7 +86,7 @@ function getBar(inputvalue) {
   if (inputvalue in impact) {
     let RenderingData = impact[inputvalue];
     for (const item in RenderingData) {
-      labelsNew.push(item);
+      labelsNew.push(item.split("")[0].toLocaleUpperCase());
       valuesNew.push(RenderingData[item]);
     }
   }

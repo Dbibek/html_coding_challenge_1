@@ -5,17 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
     <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
     <title>Coding_Challenge</title>
   </head>
   <body>
-    <section class="container">
-      <div class="main">
-        <div class="title"></div>
+    <section class="bg-black text-center h-screen">
+      <div class="flex flex-col">
+        <div id="title" class="text-4xl text-white font-semibold py-8"></div>
         <div>
-          <select class="select"></select>
+          <select
+            id="select"
+            class="w-60 h-12 bg-white text-2xl text-gray mb-8"
+          ></select>
         </div>
         <div class="canvas">
-          <canvas class="myCanvas" height="400" width="400"></canvas>
+          <canvas
+            id="myCanvas"
+            style="background-color: #444"
+            class="text-white m-auto p-12 w-96 h-80 border-2 border-white-500"
+          ></canvas>
         </div>
       </div>
     </section>
