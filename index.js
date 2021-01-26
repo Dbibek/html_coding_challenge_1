@@ -4,6 +4,7 @@
   const canvasElement = document.querySelector("#myCanvas");
 
   title.textContent = data.name;
+  let myChart = null;
 
   const { impacts: impact } = data;
   const { climate_change: climate_change, energy_use: energy_use } = impact;
@@ -19,7 +20,10 @@
 
   const reDraw = function (lbs, vls) {
     const ctx = canvasElement.getContext("2d");
-    const myChart = new Chart(ctx, {
+    if (myChart !== null) {
+      myChart.destroy();
+    }
+    myChart = new Chart(ctx, {
       type: "bar",
       data: {
         labels: lbs,
