@@ -1,3 +1,19 @@
+const title = document.querySelector(".title");
+const select = document.querySelector(".select");
+
+title.textContent = data.name;
+
+const { impacts: impact } = data;
+const { climate_change: climate_change, energy_use: energy_use } = impact;
+
+for (const property in impact) {
+  const option = document.createElement("option");
+  option.setAttribute("value", property);
+  option.appendChild(document.createTextNode(property));
+  select.appendChild(option);
+}
+
+
 let labels = null;
 let values = null;
 
@@ -46,40 +62,6 @@ var reDraw = function (lbs, vls) {
   });
 };
 
-const data = {
-  name: "Inkjet Printer",
-  impacts: {
-    climate_change: {
-      production: 45,
-      distribution: 23,
-      use: 12,
-      end_of_life: 5,
-    },
-    energy_use: {
-      production: 32,
-      distribution: 5,
-      use: 28,
-      end_of_life: 1,
-    },
-  },
-};
-
-const title = document.querySelector(".title");
-const select = document.querySelector(".select");
-
-title.textContent = data.name;
-
-const { impacts: impact } = data;
-const { climate_change: climate_change, energy_use: energy_use } = impact;
-console.log(climate_change, energy_use);
-
-for (const property in impact) {
-  const option = document.createElement("option");
-  option.setAttribute("value", property);
-  option.appendChild(document.createTextNode(property));
-  select.appendChild(option);
-}
-
 // satrting up the drawing function
 
 function startup(type) {
@@ -97,17 +79,14 @@ select.addEventListener("change", (event) => {
 function getBar(inputvalue) {
   const labelsNew = [];
   const valuesNew = [];
-  if (inputvalue === "climate_change") {
-    for (const item in climate_change) {
+  if (inputvalue in impact) {
+    let RenderingData = impact[inputvalue];
+    for (const item in RenderingData) {
       labelsNew.push(item);
-      valuesNew.push(climate_change[item]);
-    }
-  } else if (inputvalue === "energy_use") {
-    for (const item in energy_use) {
-      labelsNew.push(item);
-      valuesNew.push(energy_use[item]);
+      valuesNew.push(RenderingData[item]);
     }
   }
+
   return { labels: labelsNew, values: valuesNew };
 }
 
